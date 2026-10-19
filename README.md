@@ -81,6 +81,14 @@ Reglas de reproducción (`src/hooks/videoPolicy.js`, `src/components/BgVideo.jsx
 - Todos los videos de fondo llevan `muted loop playsInline autoPlay` y poster.
 - El video de la intro (con audio) solo se reproduce dentro del modal, después de un toque, con controles nativos. Mientras está abierto, los videos de fondo se pausan.
 
+## Estadísticas (Vercel Analytics)
+
+`<Analytics />` de `@vercel/analytics/react` está en `src/App.jsx`. Es la versión para React y Vite: `@vercel/analytics/next` es solo para Next.js.
+
+- Solo mide cuando la web está **publicada en Vercel**, con Analytics activado en el proyecto (pestaña *Analytics* → *Enable*). En local el script `/_vercel/insights/script.js` da 404 y no se registra nada.
+- Visitas y páginas: automático.
+- Evento **“Descarga APK”** en cada clic de descarga, con `version` y `origen` (`hero`, `panel`, `barra`, `version-anterior`). Evento **“Aviso iOS”** en el botón de iPhone. Los eventos personalizados requieren el plan Pro de Vercel; en el plan gratis solo se ven las visitas.
+
 ## Probar desde el teléfono (red local)
 
 ```bash

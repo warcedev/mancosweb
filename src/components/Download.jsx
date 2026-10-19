@@ -1,5 +1,6 @@
 import { forwardRef, useMemo } from 'react';
 import qrcode from 'qrcode-generator';
+import { track } from '@vercel/analytics';
 import { APK, APK_PREVIOUS, IOS_NOTIFY_URL, versionLabel } from '../config/assets.js';
 import { useDevice } from '../hooks/useDevice.js';
 import DownloadButton from './DownloadButton.jsx';
@@ -74,11 +75,11 @@ const Download = forwardRef(function Download(_, ref) {
                 <p className="notice">
                   <strong>Disponible solo para Android por ahora.</strong> Todavía no hay versión para iPhone ni iPad.
                 </p>
-                <a className="btn btn--blue btn--lg" href={IOS_NOTIFY_URL}>Avisame cuando esté en iOS</a>
+                <a className="btn btn--blue btn--lg" href={IOS_NOTIFY_URL} onClick={() => track('Aviso iOS')}>Avisame cuando esté en iOS</a>
               </div>
             ) : (
               <div className="dl__action">
-                <DownloadButton label="DESCARGAR APK" />
+                <DownloadButton label="DESCARGAR APK" source="panel" />
                 {isDesktop && (
                   <div className="dl__qr">
                     <QR url={apkAbsolute} />
@@ -91,7 +92,12 @@ const Download = forwardRef(function Download(_, ref) {
             {APK_PREVIOUS && !isIOS && (
               <p className="dl__prev">
                 ¿Problemas con la nueva versión?{' '}
-                <a href={APK_PREVIOUS.url} download={APK_PREVIOUS.fileName} type="application/vnd.android.package-archive">
+                <a
+                  href={APK_PREVIOUS.url}
+                  download={APK_PREVIOUS.fileName}
+                  type="application/vnd.android.package-archive"
+                  onClick={() => track('Descarga APK', { version: APK_PREVIOUS.version, origen: 'version-anterior' })}
+                >
                   Descargá la {APK_PREVIOUS.version} ({APK_PREVIOUS.size})
                 </a>
               </p>
@@ -131,7 +137,7 @@ export function StickyDownload({ hidden }) {
         {APK.isNew ? <NewBadge variant="tag" /> : 'Mancos Land'}
         <small>{versionLabel(APK)} · {APK.size}</small>
       </span>
-      <DownloadButton label="DESCARGAR APK" tabIndex={hidden ? -1 : 0} />
+      <DownloadButton label="DESCARGAR APK" source="barra" tabIndex={hidden ? -1 : 0} />
     </div>
   );
 }

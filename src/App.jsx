@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import { VIDEOS } from './config/assets.js';
 import { useInView } from './hooks/useInView.js';
 import Navbar, { Logo } from './components/Navbar.jsx';
@@ -41,6 +42,7 @@ export default function App() {
       <StickyDownload hidden={downloadVisible || menuOpen || introOpen || shot !== null} />
       <VideoModal video={VIDEOS.story} open={introOpen} onClose={() => setIntroOpen(false)} title="Intro de Mancos Land" />
       <Lightbox index={shot} setIndex={setShot} />
+      <Analytics />
     </>
   );
 }

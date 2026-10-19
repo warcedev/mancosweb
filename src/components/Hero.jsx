@@ -43,7 +43,7 @@ export default function Hero({ onIntro }) {
               </a>
             </>
           ) : (
-            <DownloadButton label={isDesktop ? 'DESCARGAR PARA ANDROID' : 'DESCARGAR APK'} />
+            <DownloadButton label={isDesktop ? 'DESCARGAR PARA ANDROID' : 'DESCARGAR APK'} source="hero" />
           )}
           <button className="btn btn--purple btn--lg" onClick={onIntro}>
             <span aria-hidden="true">🎬</span> VER INTRO
