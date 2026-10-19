@@ -104,6 +104,8 @@ for (const [file, size] of [['apple-touch-icon.png', 180], ['icon-192.png', 192]
 }
 
 // ---------- APK ----------
-copyFileSync(join(SRC, 'MancosLand-v4.7.apk'), join(OUT, 'downloads', 'MancosLand.apk'));
-console.log(`apk: ${kb(join(OUT, 'downloads', 'MancosLand.apk'))}`);
+// Solo la primera vez: las versiones nuevas se copian a mano en public/downloads (ver README)
+const apkOut = join(OUT, 'downloads', 'MancosLand.apk');
+if (!existsSync(apkOut)) copyFileSync(join(SRC, 'MancosLand-v4.7.apk'), apkOut);
+console.log(`apk: ${kb(apkOut)}`);
 console.log('Listo.');

@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useScrollLock } from '../hooks/useScrollLock.js';
+import { APK } from '../config/assets.js';
+import NewBadge from './NewBadge.jsx';
 
 export const NAV = [
   { href: '#juego', label: 'El juego', icon: '▶', color: 'green' },
@@ -40,7 +42,7 @@ export default function Navbar({ menuOpen, setMenuOpen }) {
             {NAV.slice(0, -1).map((l) => (
               <a key={l.href} href={l.href}>{l.label}</a>
             ))}
-            <a href="#descargar" className="btn btn--green btn--sm">Descargar</a>
+            <a href="#descargar" className="btn btn--green btn--sm nav__dl">Descargar <NewBadge variant="dot" /></a>
           </nav>
           <button
             className="nav__burger"
@@ -50,6 +52,7 @@ export default function Navbar({ menuOpen, setMenuOpen }) {
             onClick={() => setMenuOpen(!menuOpen)}
           >
             <span /><span /><span />
+            {APK.isNew && <i className="nav__dot" aria-hidden="true" />}
           </button>
         </div>
       </header>
@@ -87,6 +90,7 @@ function MobileMenu({ open, onClose }) {
           {NAV.map((l) => (
             <a key={l.href} href={l.href} className={`btn btn--${l.color} btn--block`} onClick={onClose} tabIndex={open ? 0 : -1}>
               <span aria-hidden="true">{l.icon}</span> {l.label.toUpperCase()}
+              {l.href === '#descargar' && <NewBadge variant="dot" />}
             </a>
           ))}
         </nav>

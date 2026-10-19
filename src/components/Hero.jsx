@@ -3,6 +3,7 @@ import { useDevice } from '../hooks/useDevice.js';
 import BgVideo from './BgVideo.jsx';
 import DownloadButton from './DownloadButton.jsx';
 import { Logo } from './Navbar.jsx';
+import { NewRibbon } from './NewBadge.jsx';
 
 const SIGN_CREW = ['gabriel', 'trebord', 'el-pibe', 'willito'];
 
@@ -17,6 +18,7 @@ export default function Hero({ onIntro }) {
 
       <div className="hero__content">
         <h1 className="sr-only">Mancos Land</h1>
+        {!isIOS && <NewRibbon />}
         <div className="sign">
           <div className="sign__crew" aria-hidden="true">
             {SIGN_CREW.map((id) => (

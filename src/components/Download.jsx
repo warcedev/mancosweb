@@ -1,8 +1,9 @@
 import { forwardRef, useMemo } from 'react';
 import qrcode from 'qrcode-generator';
-import { APK, IOS_NOTIFY_URL } from '../config/assets.js';
+import { APK, APK_PREVIOUS, IOS_NOTIFY_URL } from '../config/assets.js';
 import { useDevice } from '../hooks/useDevice.js';
 import DownloadButton from './DownloadButton.jsx';
+import NewBadge from './NewBadge.jsx';
 
 const STEPS = [
   { t: 'Descargá el archivo', d: `Tocá “Descargar APK” y esperá a que baje ${APK.fileName}.` },
@@ -29,7 +30,8 @@ const Download = forwardRef(function Download(_, ref) {
   return (
     <section className="section section--download" id="descargar" ref={ref}>
       <div className="container">
-        <div className="dl frame">
+        <div className={`dl frame ${APK.isNew ? 'dl--new' : ''}`}>
+          <NewBadge variant="ribbon" withVersion className="dl__ribbon" />
           <div className="dl__main">
             <h2 className="title">Descargá Mancos Land</h2>
             <p className="dl__platform">
@@ -37,11 +39,27 @@ const Download = forwardRef(function Download(_, ref) {
             </p>
 
             <dl className="dl__meta">
-              <div><dt>Versión</dt><dd>{APK.version}</dd></div>
+              <div className={APK.isNew ? 'is-new' : ''}><dt>Versión</dt><dd>{APK.version} {APK.isNew && <small className="dl__newtag">NUEVA</small>}</dd></div>
               <div><dt>Tamaño</dt><dd>{APK.size}</dd></div>
               <div><dt>Requiere</dt><dd>{APK.minAndroid}</dd></div>
               <div><dt>Actualizado</dt><dd>{APK.updated}</dd></div>
             </dl>
+
+            {APK.isNew && !isIOS && (
+              <div className="dl__news">
+                <p className="dl__update">
+                  <strong>¿Ya tenés el juego?</strong> Descargá la {APK.version} e instalala para actualizar.
+                </p>
+                {APK.notes.length > 0 && (
+                  <>
+                    <h3 className="dl__news-title">Novedades de la {APK.version}</h3>
+                    <ul className="dl__notes">
+                      {APK.notes.map((n) => <li key={n}>{n}</li>)}
+                    </ul>
+                  </>
+                )}
+              </div>
+            )}
 
             {isIOS ? (
               <div className="dl__ios">
@@ -60,6 +78,15 @@ const Download = forwardRef(function Download(_, ref) {
                   </div>
                 )}
               </div>
+            )}
+
+            {APK_PREVIOUS && !isIOS && (
+              <p className="dl__prev">
+                ¿Problemas con la nueva versión?{' '}
+                <a href={APK_PREVIOUS.url} download={APK_PREVIOUS.fileName} type="application/vnd.android.package-archive">
+                  Descargá la {APK_PREVIOUS.version} ({APK_PREVIOUS.size})
+                </a>
+              </p>
             )}
 
             <p className="dl__safe">
@@ -92,7 +119,10 @@ export function StickyDownload({ hidden }) {
   if (isIOS) return null;
   return (
     <div className={`sticky-dl ${hidden ? 'is-hidden' : ''}`} aria-hidden={hidden}>
-      <span className="sticky-dl__info">Mancos Land <small>{APK.version} · {APK.size}</small></span>
+      <span className="sticky-dl__info">
+        {APK.isNew ? <NewBadge variant="tag" /> : 'Mancos Land'}
+        <small>{APK.version} · {APK.size}</small>
+      </span>
       <DownloadButton label="DESCARGAR APK" tabIndex={hidden ? -1 : 0} />
     </div>
   );
