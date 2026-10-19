@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useScrollLock } from '../hooks/useScrollLock.js';
 import { APK } from '../config/assets.js';
-import NewBadge from './NewBadge.jsx';
+import NewBadge, { BetaTag } from './NewBadge.jsx';
 
 export const NAV = [
   { href: '#juego', label: 'El juego', icon: '▶', color: 'green' },
@@ -35,8 +35,9 @@ export default function Navbar({ menuOpen, setMenuOpen }) {
     <>
       <header className="nav">
         <div className="nav__inner">
-          <a href="#top" className="nav__brand" aria-label="Mancos Land, inicio">
+          <a href="#top" className="nav__brand" aria-label={APK.beta ? 'Mancos Land beta, inicio' : 'Mancos Land, inicio'}>
             <Logo small />
+            <BetaTag />
           </a>
           <nav className="nav__links" aria-label="Principal">
             {NAV.slice(0, -1).map((l) => (

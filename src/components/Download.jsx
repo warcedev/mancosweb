@@ -1,6 +1,6 @@
 import { forwardRef, useMemo } from 'react';
 import qrcode from 'qrcode-generator';
-import { APK, APK_PREVIOUS, IOS_NOTIFY_URL } from '../config/assets.js';
+import { APK, APK_PREVIOUS, IOS_NOTIFY_URL, versionLabel } from '../config/assets.js';
 import { useDevice } from '../hooks/useDevice.js';
 import DownloadButton from './DownloadButton.jsx';
 import NewBadge from './NewBadge.jsx';
@@ -35,11 +35,19 @@ const Download = forwardRef(function Download(_, ref) {
           <div className="dl__main">
             <h2 className="title">Descargá Mancos Land</h2>
             <p className="dl__platform">
-              <span className="pill pill--green">Android</span> Gratis · sin cuenta obligatoria
+              <span className="pill pill--green">Android</span>
+              {APK.beta && <span className="pill pill--beta">Beta</span>}
+              Gratis · sin cuenta obligatoria
             </p>
 
+            {APK.beta && (
+              <p className="dl__beta">
+                <strong>Mancos Land está en beta.</strong> El juego sigue en desarrollo: puede tener errores y cambiar entre versiones. ¡Gracias por probarlo!
+              </p>
+            )}
+
             <dl className="dl__meta">
-              <div className={APK.isNew ? 'is-new' : ''}><dt>Versión</dt><dd>{APK.version} {APK.isNew && <small className="dl__newtag">NUEVA</small>}</dd></div>
+              <div className={APK.isNew ? 'is-new' : ''}><dt>Versión</dt><dd>{versionLabel(APK)} {APK.isNew && <small className="dl__newtag">NUEVA</small>}</dd></div>
               <div><dt>Tamaño</dt><dd>{APK.size}</dd></div>
               <div><dt>Requiere</dt><dd>{APK.minAndroid}</dd></div>
               <div><dt>Actualizado</dt><dd>{APK.updated}</dd></div>
@@ -48,7 +56,7 @@ const Download = forwardRef(function Download(_, ref) {
             {APK.isNew && !isIOS && (
               <div className="dl__news">
                 <p className="dl__update">
-                  <strong>¿Ya tenés el juego?</strong> Descargá la {APK.version} e instalala para actualizar.
+                  <strong>¿Ya tenés el juego?</strong> Descargá la {versionLabel(APK)} e instalala para actualizar.
                 </p>
                 {APK.notes.length > 0 && (
                   <>
@@ -121,7 +129,7 @@ export function StickyDownload({ hidden }) {
     <div className={`sticky-dl ${hidden ? 'is-hidden' : ''}`} aria-hidden={hidden}>
       <span className="sticky-dl__info">
         {APK.isNew ? <NewBadge variant="tag" /> : 'Mancos Land'}
-        <small>{APK.version} · {APK.size}</small>
+        <small>{versionLabel(APK)} · {APK.size}</small>
       </span>
       <DownloadButton label="DESCARGAR APK" tabIndex={hidden ? -1 : 0} />
     </div>

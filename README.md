@@ -30,13 +30,14 @@ src/
 ```
 
 ### Publicar una versión nueva del APK
-Versión actual: **v4.8** (1,9 MB) · anterior: v4.7.
+Versión actual: **v4.8 beta** (1,9 MB) · anterior: v4.7 beta. El juego sigue en beta.
 
 1. Copiá el APK con su versión en el nombre: `public/downloads/MancosLand-vX.Y.apk`.
 2. Copialo también encima de `public/downloads/MancosLand.apk`, que es el link fijo para quien tenga el enlace viejo.
 3. En `src/config/assets.js`:
    - `APK`: `url`, `fileName`, `version`, `size`, `minAndroid`, `updated`.
-   - `isNew: true` muestra los avisos de **¡Nueva versión!**: cinta en el hero, “NUEVO” en el menú y en la navbar, etiqueta en la barra fija y panel de descarga destacado. Cuando deje de ser novedad, ponelo en `false`.
+   - `beta: true` indica que el juego sigue en beta: sello **BETA** en el logo y en la navbar, “v4.8 BETA” en todos lados, aviso en el panel de descarga y “(Beta)” en el título de la pestaña. Cuando salga la versión final, ponelo en `false` (en `APK` y en `APK_PREVIOUS`), y también sacá “(Beta)” del `<title>` y “la beta” de la descripción en `index.html`.
+   - `isNew: true` muestra los avisos de **¡Nueva versión!** (o **¡Nueva beta!** si `beta` es `true`): cinta en el hero, “NUEVO” en el menú y en la navbar, etiqueta en la barra fija y panel de descarga destacado. Cuando deje de ser novedad, ponelo en `false`.
    - `notes: ['…', '…']`: novedades de la versión. Si la lista tiene algo, aparece “Novedades de la vX.Y” en el panel de descarga.
    - `APK_PREVIOUS`: la versión anterior, ofrecida como “¿Problemas con la nueva versión?”. Si no la querés mostrar, ponela en `null`.
 4. `npm run build`, commit y push.

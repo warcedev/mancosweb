@@ -1,9 +1,9 @@
-import { APK, IOS_NOTIFY_URL, SPRITE, VIDEOS } from '../config/assets.js';
+import { APK, IOS_NOTIFY_URL, SPRITE, VIDEOS, versionLabel } from '../config/assets.js';
 import { useDevice } from '../hooks/useDevice.js';
 import BgVideo from './BgVideo.jsx';
 import DownloadButton from './DownloadButton.jsx';
 import { Logo } from './Navbar.jsx';
-import { NewRibbon } from './NewBadge.jsx';
+import { BetaTag, NewRibbon } from './NewBadge.jsx';
 
 const SIGN_CREW = ['gabriel', 'trebord', 'el-pibe', 'willito'];
 
@@ -27,6 +27,7 @@ export default function Hero({ onIntro }) {
           </div>
           <div className="sign__board">
             <Logo />
+            <BetaTag className="betatag--stamp" />
           </div>
         </div>
         <p className="hero__tag">Cada mapa nuevo se genera distinto</p>
@@ -53,7 +54,7 @@ export default function Hero({ onIntro }) {
         </div>
 
         <p className="hero__meta">
-          {APK.version} · Gratis · {APK.minAndroid} · {APK.size}
+          {versionLabel(APK)} · Gratis · {APK.minAndroid} · {APK.size}
           {isDesktop && (
             <>
               {' · '}

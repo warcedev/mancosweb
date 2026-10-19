@@ -618,7 +618,7 @@ p { margin: 0; }
 @keyframes spin { to { transform: rotate(360deg); } }
 @media (hover: hover) { .newribbon:hover { filter: brightness(1.08); } }
 @media (max-height: 520px) and (orientation: landscape) {
-  .newribbon { min-height: 36px; padding: 4px 12px; font-size: 0.9rem; }
+  .newribbon { min-height: 48px; padding: 4px 12px; font-size: 0.9rem; }
   .newribbon__cta { display: none; }
   .hero__content:has(.newribbon) .sign__crew { display: none; }
   .hero__content:has(.newribbon) .sign__board { padding-block: 8px; }
@@ -648,3 +648,26 @@ p { margin: 0; }
 @media (prefers-reduced-motion: reduce) {
   .newbadge, .nav__dot, .newribbon, .newribbon__star { animation: none !important; }
 }
+
+/* ─── Beta ─────────────────────────────────────────────── */
+.betatag {
+  display: inline-flex; align-items: center;
+  font: 900 0.68rem/1 Roboto, sans-serif; letter-spacing: 0.1em;
+  color: #fff; background: var(--purple); padding: 4px 6px; margin-left: 8px;
+  box-shadow: 0 2px 0 var(--purple-d), 0 0 0 2px #120f1a; text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5);
+}
+.sign__board { position: relative; }
+.betatag--stamp {
+  position: absolute; right: clamp(-8px, -1vw, -4px); bottom: clamp(-14px, -1.5vw, -10px); margin: 0;
+  font-size: clamp(0.85rem, 0.7rem + 0.8vw, 1.35rem); padding: 0.35em 0.6em;
+  transform: rotate(-8deg);
+  border: 3px solid #fff; box-shadow: 0 0 0 3px #120f1a, 0 4px 0 var(--purple-d);
+}
+.pill--beta { color: #e3c6ff; border-color: var(--purple); background: rgba(123, 75, 152, 0.2); }
+.dl__platform .pill + .pill { margin-left: -2px; }
+.dl__beta {
+  margin: -6px 0 20px; padding: 10px 12px;
+  border-left: 4px solid var(--purple); background: rgba(123, 75, 152, 0.14);
+  font-size: 0.95rem; color: var(--muted);
+}
+.dl__beta strong { color: #e3c6ff; }

@@ -10,6 +10,7 @@ export const APK = {
   size: '1,9 MB',
   minAndroid: 'Android 8+', // placeholder editable
   updated: '19/10/2026',
+  beta: true, // el juego sigue en beta: muestra "BETA" en el logo, la versión y la descarga
   isNew: true, // muestra los avisos de "¡Nueva versión!" (poné false cuando deje de ser novedad)
   // Novedades de la versión: agregá una línea por cambio y aparecen en el panel de descarga
   notes: [],
@@ -21,7 +22,11 @@ export const APK_PREVIOUS = {
   fileName: 'MancosLand-v4.7.apk',
   version: 'v4.7',
   size: '1,5 MB',
+  beta: true,
 };
+
+// "v4.8 BETA" / "v4.8" según corresponda
+export const versionLabel = (apk) => (apk.beta ? `${apk.version} BETA` : apk.version);
 
 // Placeholder: link para el aviso de iOS (formulario, Discord, mailto:, etc.)
 export const IOS_NOTIFY_URL = '#descargar';
