@@ -1,0 +1,8 @@
+node_modules
+dist
+
+# Originales pesados (>100 MB no entran en GitHub). Los assets optimizados están en /public.
+multimediamancos/
+
+# Metadatos de Windows
+*:Zone.Identifier

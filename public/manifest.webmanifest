@@ -1,0 +1,17 @@
+{
+  "name": "Mancos Land",
+  "short_name": "Mancos Land",
+  "description": "RPG pixelado para Android: explorá islas, bajá cien pisos y recuperá los cuatro sellos.",
+  "lang": "es",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#1a1626",
+  "theme_color": "#1a1626",
+  "icons": [
+    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

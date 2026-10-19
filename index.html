@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Mancos Land · RPG pixelado para Android</title>
+    <meta name="description" content="Mancos Land: explorá islas que se generan distinto cada vez, construí tu casa, bajá cien pisos por castillo y recuperá los cuatro sellos. Descargá el APK para Android." />
+    <meta name="theme-color" content="#1a1626" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Mancos Land" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png" />
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+    <meta property="og:title" content="Mancos Land" />
+    <meta property="og:description" content="RPG pixelado para Android. Cien pisos hacia la oscuridad." />
+    <meta property="og:image" content="/img/shots/captura-5-1600.webp" />
+    <!-- Precarga del poster del hero (LCP) -->
+    <link rel="preload" as="image" type="image/webp"
+      href="/videos/gameplay1-poster-640.webp"
+      imagesrcset="/videos/gameplay1-poster-640.webp 640w, /videos/gameplay1-poster-1280.webp 1280w"
+      imagesizes="100vw" fetchpriority="high" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <noscript><p style="color:#fff;padding:16px">Activá JavaScript para ver Mancos Land. Descarga directa: <a href="/downloads/MancosLand.apk" style="color:#7fe08a">MancosLand.apk</a></p></noscript>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
